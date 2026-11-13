@@ -39,7 +39,6 @@ def generate_fide_team_diagram(
         fontweight="bold", color="#2c3e50"
     )
 
-    # Arbiter aisle
     aisle_x = 0.4 if aisle_side == "left" else 11.0
     ax.add_patch(
         patches.Rectangle(
@@ -52,7 +51,6 @@ def generate_fide_team_diagram(
         rotation=90, fontsize=10, fontweight="bold", color="#2c3e50"
     )
 
-    # Table
     table_x = 1.3 if aisle_side == "left" else 1.1
     table_width = 9.6
     ax.add_patch(
@@ -82,7 +80,6 @@ def generate_fide_team_diagram(
             fontsize=10, fontweight="bold"
         )
 
-        # Seats: Team B at the top, Team A at the bottom.
         ax.add_patch(
             patches.Circle(
                 (center_x, 4.75), 0.2, facecolor="#5d6d7e", edgecolor="black"
@@ -93,6 +90,7 @@ def generate_fide_team_diagram(
                 (center_x, 0.85), 0.2, facecolor="#5d6d7e", edgecolor="black"
             )
         )
+
         ax.text(
             center_x, 3.95, team_b_color, ha="center", va="center",
             fontsize=9, fontweight="bold"
@@ -102,7 +100,6 @@ def generate_fide_team_diagram(
             fontsize=9, fontweight="bold"
         )
 
-        # Chessboard (8x8); bottom-right square is light.
         board_size = 1.4
         bx = center_x - board_size / 2
         by = 2.8 - board_size / 2
@@ -124,7 +121,6 @@ def generate_fide_team_diagram(
             )
         )
 
-        # Put each clock on the side facing the arbiter aisle.
         clock_width = 0.22
         clock_height = 0.55
         if aisle_side == "left":
@@ -178,5 +174,6 @@ fig = generate_fide_team_diagram(
     team_a_board1_color=team_a_board1_color,
     aisle_side=aisle_side,
 )
+
 st.pyplot(fig)
 plt.close(fig)
