@@ -1,5 +1,6 @@
 import matplotlib.patches as patches
 import matplotlib.pyplot as plt
+import streamlit as st
 
 
 def generate_fide_team_diagram(
@@ -196,14 +197,23 @@ def generate_fide_team_diagram(
     )
 
   plt.tight_layout()
-  plt.savefig(output_file, dpi=300)
-  print(f"Diagram saved successfully to {output_file}")
+  if output_file:
+    plt.savefig(output_file, dpi=300)
+  return fig
 
 
-# Example Usage:
-generate_fide_team_diagram(
-    team_a_name="Home Club (Team A)",
-    team_b_name="Visiting Club (Team B)",
-    team_a_board1_color="White",
-    aisle_side="left",
+st.title("FIDE 4-Board Team Match Setup")
+
+team_a_name = st.text_input("Team A", "Home Club (Team A)")
+team_b_name = st.text_input("Team B", "Visiting Club (Team B)")
+team_a_board1_color = st.selectbox("Team A's color on Board 1", ["White", "Black"])
+aisle_side = st.selectbox("Arbiter aisle side", ["left", "right"])
+
+fig = generate_fide_team_diagram(
+    team_a_name=team_a_name,
+    team_b_name=team_b_name,
+    team_a_board1_color=team_a_board1_color,
+    aisle_side=aisle_side,
 )
+st.pyplot(fig)
+plt.close(fig)
