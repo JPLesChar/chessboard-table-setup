@@ -8,15 +8,22 @@ st.set_page_config(page_title="Chess Team Setup", page_icon="♟️", layout="wi
 st.markdown(
     """
     <style>
+    .stApp,
+    div[data-testid="stSidebar"] {
+        background: #0f172a;
+        color: #ffffff;
+    }
     .block-container {
         padding-top: 1.5rem;
         padding-bottom: 1rem;
     }
     div[data-testid="stSidebar"] {
-        background: #f4f7fb;
+        background: #1e293b;
     }
-    .stMarkdown {
-        color: #1f2937;
+    .stMarkdown,
+    h1, h2, h3, label,
+    [data-testid="stWidgetLabel"] {
+        color: #ffffff;
     }
     </style>
     """,
@@ -26,8 +33,8 @@ st.markdown(
 # ---------- Diagram Generator ----------
 def generate_fide_team_diagram(team_a_name="TEAM A", team_b_name="TEAM B", aisle_side="left"):
     fig, ax = plt.subplots(figsize=(12, 6), dpi=150)
-    fig.patch.set_facecolor("#f8fafc")
-    ax.set_facecolor("#f8fafc")
+    fig.patch.set_facecolor("#0f172a")
+    ax.set_facecolor("#0f172a")
     ax.set_xlim(0, 12)
     ax.set_ylim(0, 6)
     ax.axis("off")
@@ -41,7 +48,7 @@ def generate_fide_team_diagram(team_a_name="TEAM A", team_b_name="TEAM B", aisle
         va="center",
         fontsize=15,
         fontweight="bold",
-        color="#0f172a",
+        color="#ffffff",
     )
     ax.text(
         6,
@@ -50,7 +57,7 @@ def generate_fide_team_diagram(team_a_name="TEAM A", team_b_name="TEAM B", aisle
         ha="center",
         va="center",
         fontsize=10,
-        color="#475569",
+        color="#e2e8f0",
     )
 
     # Team labels
@@ -62,7 +69,7 @@ def generate_fide_team_diagram(team_a_name="TEAM A", team_b_name="TEAM B", aisle
         va="center",
         fontsize=12,
         fontweight="bold",
-        color="#1e3a8a",
+        color="#ffffff",
     )
     ax.text(
         6,
@@ -72,7 +79,7 @@ def generate_fide_team_diagram(team_a_name="TEAM A", team_b_name="TEAM B", aisle
         va="center",
         fontsize=12,
         fontweight="bold",
-        color="#7c2d12",
+        color="#ffffff",
     )
 
     # Arbiter aisle
@@ -81,8 +88,8 @@ def generate_fide_team_diagram(team_a_name="TEAM A", team_b_name="TEAM B", aisle
         (aisle_x, 1.0),
         0.6,
         3.6,
-        facecolor="#dfe7ee",
-        edgecolor="#64748b",
+        facecolor="#334155",
+        edgecolor="#94a3b8",
         linewidth=1.2,
     )
     ax.add_patch(aisle_rect)
@@ -95,7 +102,7 @@ def generate_fide_team_diagram(team_a_name="TEAM A", team_b_name="TEAM B", aisle
         rotation=90,
         fontsize=8,
         fontweight="bold",
-        color="#334155",
+        color="#ffffff",
     )
 
     # Main table
@@ -105,8 +112,8 @@ def generate_fide_team_diagram(team_a_name="TEAM A", team_b_name="TEAM B", aisle
         (table_x, 1.35),
         table_width,
         2.9,
-        facecolor="#ffffff",
-        edgecolor="#334155",
+        facecolor="#1e293b",
+        edgecolor="#94a3b8",
         linewidth=2,
     )
     ax.add_patch(table_rect)
@@ -115,7 +122,7 @@ def generate_fide_team_diagram(team_a_name="TEAM A", team_b_name="TEAM B", aisle
     board_spacing = table_width / 4
     for i in range(1, 4):
         div_x = table_x + i * board_spacing
-        ax.plot([div_x, div_x], [1.35, 4.25], color="#cbd5e1", linestyle="--", linewidth=1)
+        ax.plot([div_x, div_x], [1.35, 4.25], color="#64748b", linestyle="--", linewidth=1)
 
     # Board setup
     for i in range(4):
@@ -133,18 +140,18 @@ def generate_fide_team_diagram(team_a_name="TEAM A", team_b_name="TEAM B", aisle
             va="center",
             fontsize=9,
             fontweight="bold",
-            color="#0f172a",
+            color="#ffffff",
         )
 
         # Team seats
-        seat_b = patches.Circle((center_x, 4.72), 0.2, facecolor="#475569", edgecolor="#0f172a")
-        seat_a = patches.Circle((center_x, 0.88), 0.2, facecolor="#475569", edgecolor="#0f172a")
+        seat_b = patches.Circle((center_x, 4.72), 0.2, facecolor="#475569", edgecolor="#cbd5e1")
+        seat_a = patches.Circle((center_x, 0.88), 0.2, facecolor="#475569", edgecolor="#cbd5e1")
         ax.add_patch(seat_b)
         ax.add_patch(seat_a)
 
         # Color labels
-        ax.text(center_x, 3.95, team_b_color, ha="center", va="center", fontsize=8.5, fontweight="bold", color="#0f172a")
-        ax.text(center_x, 1.55, team_a_color, ha="center", va="center", fontsize=8.5, fontweight="bold", color="#0f172a")
+        ax.text(center_x, 3.95, team_b_color, ha="center", va="center", fontsize=8.5, fontweight="bold", color="#ffffff")
+        ax.text(center_x, 1.55, team_a_color, ha="center", va="center", fontsize=8.5, fontweight="bold", color="#ffffff")
 
         # Chessboard
         board_size = 1.4
@@ -170,7 +177,7 @@ def generate_fide_team_diagram(team_a_name="TEAM A", team_b_name="TEAM B", aisle
             board_size,
             board_size,
             facecolor="none",
-            edgecolor="#0f172a",
+            edgecolor="#cbd5e1",
             linewidth=1.0,
         )
         ax.add_patch(board_border)
