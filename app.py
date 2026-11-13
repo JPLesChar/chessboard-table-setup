@@ -4,8 +4,8 @@ import streamlit as st
 
 
 def generate_fide_team_diagram(
-    team_a_name="TEAM A",
-    team_b_name="TEAM B",
+    team_a_name="HOME TEAM",
+    team_b_name="AWAY TEAM",
     team_a_board1_color="White",
     aisle_side="left",
     output_file=None,
