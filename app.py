@@ -8,7 +8,7 @@ def generate_fide_team_diagram(
     team_b_name="TEAM B",
     team_a_board1_color="White",
     aisle_side="left",
-    output_file="fide_team_setup.png",
+    output_file=None,
 ):
     """Create a diagram of a four-board team match setup."""
     if team_a_board1_color not in {"White", "Black"}:
@@ -21,7 +21,6 @@ def generate_fide_team_diagram(
     ax.set_ylim(0, 6)
     ax.axis("off")
 
-    # Title and team labels
     ax.text(
         6,
         5.6,
@@ -32,62 +31,37 @@ def generate_fide_team_diagram(
         fontweight="bold",
     )
     ax.text(
-        6,
-        5.1,
-        team_b_name,
-        ha="center",
-        va="center",
-        fontsize=12,
-        fontweight="bold",
-        color="#2c3e50",
+        6, 5.1, team_b_name, ha="center", va="center", fontsize=12,
+        fontweight="bold", color="#2c3e50"
     )
     ax.text(
-        6,
-        0.5,
-        team_a_name,
-        ha="center",
-        va="center",
-        fontsize=12,
-        fontweight="bold",
-        color="#2c3e50",
+        6, 0.5, team_a_name, ha="center", va="center", fontsize=12,
+        fontweight="bold", color="#2c3e50"
     )
 
     # Arbiter aisle
     aisle_x = 0.4 if aisle_side == "left" else 11.0
-    aisle_rect = patches.Rectangle(
-        (aisle_x, 1.0),
-        0.6,
-        3.6,
-        facecolor="#d5dbdb",
-        edgecolor="#7f8c8d",
+    ax.add_patch(
+        patches.Rectangle(
+            (aisle_x, 1.0), 0.6, 3.6,
+            facecolor="#d5dbdb", edgecolor="#7f8c8d"
+        )
     )
-    ax.add_patch(aisle_rect)
     ax.text(
-        aisle_x + 0.3,
-        2.8,
-        "ARBITER AISLE",
-        ha="center",
-        va="center",
-        rotation=90,
-        fontsize=10,
-        fontweight="bold",
-        color="#2c3e50",
+        aisle_x + 0.3, 2.8, "ARBITER AISLE", ha="center", va="center",
+        rotation=90, fontsize=10, fontweight="bold", color="#2c3e50"
     )
 
     # Table
     table_x = 1.3 if aisle_side == "left" else 1.1
     table_width = 9.6
-    table_rect = patches.Rectangle(
-        (table_x, 1.4),
-        table_width,
-        2.8,
-        facecolor="#f8f9f9",
-        edgecolor="#34495e",
-        linewidth=2,
+    ax.add_patch(
+        patches.Rectangle(
+            (table_x, 1.4), table_width, 2.8,
+            facecolor="#f8f9f9", edgecolor="#34495e", linewidth=2
+        )
     )
-    ax.add_patch(table_rect)
 
-    # Four boards, with Board 1's selected color alternating across the team.
     board_spacing = table_width / 4
     for i in range(4):
         board_num = i + 1
@@ -104,16 +78,11 @@ def generate_fide_team_diagram(
             ax.plot([div_x, div_x], [1.4, 4.2], color="#bdc3c7", linestyle="--")
 
         ax.text(
-            center_x,
-            4.45,
-            f"Board {board_num}",
-            ha="center",
-            va="center",
-            fontsize=10,
-            fontweight="bold",
+            center_x, 4.45, f"Board {board_num}", ha="center", va="center",
+            fontsize=10, fontweight="bold"
         )
 
-        # Player seats (Team B at the top, Team A at the bottom)
+        # Seats: Team B at the top, Team A at the bottom.
         ax.add_patch(
             patches.Circle(
                 (center_x, 4.75), 0.2, facecolor="#5d6d7e", edgecolor="black"
@@ -124,27 +93,16 @@ def generate_fide_team_diagram(
                 (center_x, 0.85), 0.2, facecolor="#5d6d7e", edgecolor="black"
             )
         )
-
         ax.text(
-            center_x,
-            3.95,
-            team_b_color,
-            ha="center",
-            va="center",
-            fontsize=9,
-            fontweight="bold",
+            center_x, 3.95, team_b_color, ha="center", va="center",
+            fontsize=9, fontweight="bold"
         )
         ax.text(
-            center_x,
-            1.65,
-            team_a_color,
-            ha="center",
-            va="center",
-            fontsize=9,
-            fontweight="bold",
+            center_x, 1.65, team_a_color, ha="center", va="center",
+            fontsize=9, fontweight="bold"
         )
 
-        # Chessboard (8x8). The bottom-right square is light.
+        # Chessboard (8x8); bottom-right square is light.
         board_size = 1.4
         bx = center_x - board_size / 2
         by = 2.8 - board_size / 2
@@ -156,25 +114,17 @@ def generate_fide_team_diagram(
                 ax.add_patch(
                     patches.Rectangle(
                         (bx + col * sq_size, by + row * sq_size),
-                        sq_size,
-                        sq_size,
-                        facecolor=sq_color,
-                        edgecolor="none",
+                        sq_size, sq_size, facecolor=sq_color, edgecolor="none"
                     )
                 )
-
         ax.add_patch(
             patches.Rectangle(
-                (bx, by),
-                board_size,
-                board_size,
-                facecolor="none",
-                edgecolor="black",
-                linewidth=1,
+                (bx, by), board_size, board_size, facecolor="none",
+                edgecolor="black", linewidth=1
             )
         )
 
-        # Place clocks on the aisle-facing side of each board.
+        # Put each clock on the side facing the arbiter aisle.
         clock_width = 0.22
         clock_height = 0.55
         if aisle_side == "left":
@@ -184,38 +134,25 @@ def generate_fide_team_diagram(
         clock_y = 2.8 - clock_height / 2
         ax.add_patch(
             patches.Rectangle(
-                (clock_x, clock_y),
-                clock_width,
-                clock_height,
-                facecolor="#2ecc71",
-                edgecolor="black",
-                linewidth=1,
+                (clock_x, clock_y), clock_width, clock_height,
+                facecolor="#2ecc71", edgecolor="black", linewidth=1
             )
         )
         ax.text(
-            clock_x + clock_width / 2,
-            2.8,
-            "CLOCK",
-            ha="center",
-            va="center",
-            rotation=90,
-            fontsize=6,
-            fontweight="bold",
-            color="white",
+            clock_x + clock_width / 2, 2.8, "CLOCK", ha="center", va="center",
+            rotation=90, fontsize=6, fontweight="bold", color="white"
         )
 
         arrow_start_x = clock_x + clock_width if aisle_side == "right" else clock_x
         arrow_end_x = arrow_start_x + (0.18 if aisle_side == "right" else -0.18)
         ax.annotate(
-            "",
-            xy=(arrow_end_x, 2.8),
-            xytext=(arrow_start_x, 2.8),
-            arrowprops={"arrowstyle": "->", "color": "#2ecc71", "linewidth": 1.5},
+            "", xy=(arrow_end_x, 2.8), xytext=(arrow_start_x, 2.8),
+            arrowprops={"arrowstyle": "->", "color": "#2ecc71", "linewidth": 1.5}
         )
 
     plt.tight_layout()
     if output_file:
-        plt.savefig(output_file, dpi=300)
+        fig.savefig(output_file, dpi=300)
     return fig
 
 
@@ -230,5 +167,16 @@ st.markdown(
 """
 )
 
+team_a_name = st.text_input("Home team (Team A)", "Home Club (Team A)")
+team_b_name = st.text_input("Visiting team (Team B)", "Visiting Club (Team B)")
+team_a_board1_color = st.selectbox("Team A's color on Board 1", ["White", "Black"])
+aisle_side = st.selectbox("Arbiter aisle side", ["left", "right"])
+
+fig = generate_fide_team_diagram(
+    team_a_name=team_a_name,
+    team_b_name=team_b_name,
+    team_a_board1_color=team_a_board1_color,
+    aisle_side=aisle_side,
+)
 st.pyplot(fig)
 plt.close(fig)
