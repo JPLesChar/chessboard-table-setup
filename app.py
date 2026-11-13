@@ -231,8 +231,8 @@ st.markdown(
 """
 )
 
-team_a_name = st.text_input("Home team (Team A)", "Home Club (Team A)")
-team_b_name = st.text_input("Visiting team (Team B)", "Visiting Club (Team B)")
+team_a_name = st.text_input("Home team (Team A")
+team_b_name = st.text_input("Visiting team (Team B")
 team_a_board1_color = st.selectbox("Team A's color on Board 1", ["White", "Black"])
 aisle_side = st.selectbox("Arbiter aisle side", ["left", "right"])
 
