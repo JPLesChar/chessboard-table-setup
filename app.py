@@ -156,14 +156,14 @@ st.title("CHESS 4-Board Team Match Setup")
 st.markdown(
     """
 **Setup rules**
-- If there are several rows of tables, the teams should always face each other
+- If there are several rows of tables, the teams must face each other
 - The chessboard's bottom-right square is light.
 - The home team plays with the white pieces on the odd-numbered boards.
 - Board 1 determines the color assignment. Colors alternate on each following board.
 - All clocks are on the same side of the tables, display facing the arbiter aisle.
 
 **Règles de mise en place**
-- S’il y a plusieurs rangées de tables, les équipes doivent toujours se faire face.
+- S’il y a plusieurs rangées de tables, les équipes doivent se faire face.
 - La case claire située en bas à droite de l’échiquier
 - L’équipe qui reçoit joue avec les blancs aux échiquiers impairs.
 - L'échiquier N° 1 détermine l’attribution des couleurs. Les couleurs alternent sur chaque plateau suivant.
