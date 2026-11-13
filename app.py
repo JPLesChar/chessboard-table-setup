@@ -177,11 +177,10 @@ def generate_fide_team_diagram(
         # Place clocks on the aisle-facing side of each board.
         clock_width = 0.22
         clock_height = 0.55
-        clock_x = (
-            bx - clock_width - 0.12
-            if aisle_side == "right"
-            else bx + board_size + 0.12
-        )
+        if aisle_side == "left":
+            clock_x = bx - clock_width - 0.12
+        else:
+            clock_x = bx + board_size + 0.12
         clock_y = 2.8 - clock_height / 2
         ax.add_patch(
             patches.Rectangle(
@@ -219,6 +218,7 @@ def generate_fide_team_diagram(
         plt.savefig(output_file, dpi=300)
     return fig
 
+
 st.title("CHESS 4-Board Team Match Setup")
 st.markdown(
     """
@@ -230,10 +230,16 @@ st.markdown(
 """
 )
 
-team_a_name = st.text_input("Home team = A")
-team_b_name = st.text_input("Visiting team = B")
+team_a_name = st.text_input("Home team (Team A)", "Home Club (Team A)")
+team_b_name = st.text_input("Visiting team (Team B)", "Visiting Club (Team B)")
 team_a_board1_color = st.selectbox("Team A's color on Board 1", ["White", "Black"])
 aisle_side = st.selectbox("Arbiter aisle side", ["left", "right"])
 
+fig = generate_fide_team_diagram(
+    team_a_name=team_a_name,
+    team_b_name=team_b_name,
+    team_a_board1_color=team_a_board1_color,
+    aisle_side=aisle_side,
+)
 st.pyplot(fig)
 plt.close(fig)
