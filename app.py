@@ -163,20 +163,6 @@ st.markdown(
 """
 )
 
-# These controls define the values passed to generate_fide_team_diagram below.
-team_a_name = st.text_input("Team A name", value="TEAM A")
-team_b_name = st.text_input("Team B name", value="TEAM B")
-team_a_board1_color = st.selectbox(
-    "Team A's color on Board 1", options=("White", "Black")
-)
-aisle_side = st.selectbox("Arbiter aisle side", options=("left", "right"))
-
-fig = generate_fide_team_diagram(
-    team_a_name=team_a_name,
-    team_b_name=team_b_name,
-    team_a_board1_color=team_a_board1_color,
-    aisle_side=aisle_side,
-)
-
+fig = generate_fide_team_diagram()
 st.pyplot(fig)
 plt.close(fig)
