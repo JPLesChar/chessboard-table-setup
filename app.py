@@ -218,6 +218,8 @@ def generate_fide_team_diagram(
     if output_file:
         plt.savefig(output_file, dpi=300)
     return fig
+    )
+
 
 
 st.title("CHESS 4-Board Team Match Setup")
