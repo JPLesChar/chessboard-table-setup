@@ -202,7 +202,7 @@ def generate_fide_team_diagram(
   return fig
 
 
-st.title("FIDE 4-Board Team Match Setup")
+st.title("CHESS 4-Board Team Match Setup")
 
 team_a_name = st.text_input("Team A", "Home Club (Team A)")
 team_b_name = st.text_input("Team B", "Visiting Club (Team B)")
