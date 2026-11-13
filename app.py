@@ -236,6 +236,5 @@ team_b_name = st.text_input("Visiting team = B")
 team_a_board1_color = st.selectbox("Team A's color on Board 1", ["White", "Black"])
 aisle_side = st.selectbox("Arbiter aisle side", ["left", "right"])
 
-)
 st.pyplot(fig)
 plt.close(fig)
