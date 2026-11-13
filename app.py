@@ -123,7 +123,7 @@ def generate_fide_team_diagram(
 
         clock_width = 0.22
         clock_height = 0.55
-        if aisle_side == "left":
+        if aisle_side == "right":
             clock_x = bx - clock_width - 0.12
         else:
             clock_x = bx + board_size + 0.12
@@ -157,9 +157,15 @@ st.markdown(
     """
 **Setup rules**
 - The chessboard's bottom-right square is light.
-- Team A's Board 1 color is selected below; colors alternate on subsequent boards.
-- Teams face each other, with opposite colors on each board.
-- All clocks are on the same side of the tables, facing the arbiter aisle.
+- The home team plays with the white pieces on the odd-numbered boards.
+- Board 1 determines the color assignment. Colors alternate on each following board.
+- All clocks are on the same side of the tables, display facing the arbiter aisle.
+
+**Règles de mise en place**
+- La case claire située en bas à droite de l’échiquier
+- L’équipe qui reçoit joue avec les blancs aux échiquiers impairs.
+- L'échiquier N° 1 détermine l’attribution des couleurs. Les couleurs alternent sur chaque plateau suivant.
+- Toutes les pendules sont placées du même côté des tables, leur écran orienté vers l’allée réservée à l’arbitre.
 """
 )
 
