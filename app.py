@@ -18,7 +18,7 @@ def generate_fide_team_diagram(
   ax.text(
       6,
       5.6,
-      f"FIDE 4-Board Team Match Setup (Aisle on {aisle_side.capitalize()})",
+      f"CHESS 4-Board Team Match Setup (Aisle on {aisle_side.capitalize()})",
       ha="center",
       va="center",
       fontsize=14,
@@ -165,10 +165,10 @@ def generate_fide_team_diagram(
     )
     ax.add_patch(board_border)
 
-    # Draw Clock (Always on the side facing the Arbiter Aisle)
+    # Draw Clock (Always screen facing the Arbiter Aisle)
     clock_width = 0.22
     clock_height = 0.55
-    if aisle_side == "left":
+    if aisle_side == "right":
       clock_x = bx - clock_width - 0.12
     else:
       clock_x = bx + board_size + 0.12
