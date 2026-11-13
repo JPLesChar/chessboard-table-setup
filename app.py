@@ -179,7 +179,7 @@ def generate_fide_team_diagram(
         clock_height = 0.55
         clock_x = (
             bx - clock_width - 0.12
-            if aisle_side == "left"
+            if aisle_side == "right"
             else bx + board_size + 0.12
         )
         clock_y = 2.8 - clock_height / 2
