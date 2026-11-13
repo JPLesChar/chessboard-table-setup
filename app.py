@@ -1,7 +1,3 @@
-import random
-
-import streamlit as st
-
 import matplotlib.patches as patches
 import matplotlib.pyplot as plt
 
